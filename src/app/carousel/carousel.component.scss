@@ -33,6 +33,7 @@
       display: block;
       text-align: center;
       width: 100%;
+      margin-bottom: 30px;
 
       img {
         height: 100%;
@@ -69,12 +70,10 @@
 
     .cell-inner {
       border-radius: 16px;
-      background: linear-gradient(180deg, #373737 0%, #191919 100%);
       border-bottom: 15px solid #FFC000;
       box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.6);
 
       .cell-title {
-        color: #F5F5F5;
         font-size: 40px;
         font-weight: 600;
         line-height: 58px;
@@ -84,7 +83,7 @@
       h3.cell-action {
         display: block;
         a {
-          color: #F5F5F5;
+          color: #232323;
         }
       }
     }
@@ -97,13 +96,22 @@
       .cell-title {
         color: #F5F5F5;
       }
+
+      h3.cell-action {
+        a {
+          color: #F5F5F5;
+        }
+      }
     }
   }
 }
 
 .arrows {
   position: relative;
-  margin-top: -100px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: -100px;
+  }
 
   .arrow {
     height: 40px;
@@ -136,7 +144,6 @@
 
 .picker {
   position: relative;
-  overflow: hidden;
   width: 100%;
   height: 60vh;
   border-radius: 2px;

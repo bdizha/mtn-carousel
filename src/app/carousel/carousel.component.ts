@@ -33,8 +33,7 @@ export class CarouselComponent implements OnInit {
       this.scrollItems = 6
     } else if (clientWidth > 768) {
       this.scrollItems = 3
-    }
-    else {
+    } else {
       this.scrollItems = 1
       this.isMobile = true
     }
@@ -50,7 +49,7 @@ export class CarouselComponent implements OnInit {
 
     TweenLite.set(picker, {
       //perspective: 1100,
-      width: clientWidth
+      width: wrapWidth - cellWidth
     });
 
     const baseTl = new TimelineMax({paused: true});
@@ -108,6 +107,10 @@ export class CarouselComponent implements OnInit {
 
       baseTl.add(tl, i * -cellStep);
     }
+  }
+
+  onPlay(): void {
+    console.log('testing...')
   }
 
 }

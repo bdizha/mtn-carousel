@@ -55,8 +55,10 @@ h2 {
 section {
   &.main {
     margin-top: 150px;
+
     .question {
       position: relative;
+
       h2 {
         display: block;
         position: absolute;
@@ -68,6 +70,7 @@ section {
         font-weight: 300;
         letter-spacing: -0.2px;
         line-height: 28px;
+
         span {
           font-weight: 700;
         }
@@ -88,6 +91,10 @@ section {
     .container {
       position: relative;
 
+      @media screen and (max-width: 768px) {
+        padding: 0;
+      }
+
       .mtn-logo {
         height: 96px;
         width: 96px;
@@ -95,6 +102,7 @@ section {
         position: absolute;
         left: 0;
         display: block;
+        z-index: 10;
 
         img {
           display: block;
@@ -116,14 +124,21 @@ section {
 
       .nav-item {
         padding: 32px 20px 24px;
+
+        @media screen and (max-width: 768px) {
+          padding: 12px 15px;
+        }
+
         .text-yellow {
           font-size: 12px;
           display: inline-block;
           margin-right: 12px;
         }
 
-        &:first-child {
-          padding-left: 124px;
+        @media screen and (min-width: 768px) {
+          &:first-child {
+            padding-left: 124px;
+          }
         }
 
         .nav-link {
@@ -208,6 +223,29 @@ section {
   }
 }
 
+.navbar {
+  .navbar-toggler {
+    margin: 20px 15px;
+    position: absolute;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .navbar-collapse {
+      margin-top: 80px;
+      background: #FFFFFF;
+      z-index: 9;
+    }
+
+    .navbar-nav{
+      margin-top: 45px
+    }
+  }
+
+  .navbar-nav {
+  }
+}
+
 .mt-12 {
   margin-top: 60px;
 }
@@ -219,6 +257,9 @@ section {
 }
 
 .main {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
   .arrow {
     height: 40px;
     width: 40px;

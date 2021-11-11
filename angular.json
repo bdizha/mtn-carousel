@@ -39,7 +39,7 @@
               "node_modules/@fontsource/work-sans/index.css",
               "src/scss/styles.scss"
             ],
-            "scripts": ["node_modules/gsap/src/uncompressed/TweenMax.js", "src/assets/js/ThrowPropsPlugin.min.js"]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js", "node_modules/gsap/src/uncompressed/TweenMax.js", "src/assets/js/ThrowPropsPlugin.min.js"]
           },
           "configurations": {
             "production": {
