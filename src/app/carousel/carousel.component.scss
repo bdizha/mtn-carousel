@@ -2,18 +2,15 @@
   box-sizing: border-box;
 }
 
-main {
-  display: flex;
+.cells {
   position: relative;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  align-items: center;
-  justify-content: center;
 }
 
 .cell {
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
@@ -21,52 +18,118 @@ main {
   font-size: 26px;
   font-weight: 500;
   user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  transform-origin: center bottom;
-  //height: 284px;
-  //width: 200px;
-  border: 2px solid rgba(150, 150, 150, 0.08);
-  border-radius: 8px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #EBEBEB 100%);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
 
-  .cell-image {
-    height: 79.67px;
-    width: 79.67px;
-    border: 1px solid #979797;
-  }
-
-  .cell-title {
-    color: #232323;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.2px;
-    line-height: 24px;
+  .cell-inner {
+    transform-origin: center bottom;
+    border: 2px solid rgba(150, 150, 150, 0.08);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #EBEBEB 100%);
     text-align: center;
-  }
+    height: 100%;
+    padding: 75px 60px;
+    overflow: hidden;
 
-  .cell__active {
     .cell-image {
-      height: 158.33px;
-      width: 158.33px;
+      display: block;
+      text-align: center;
+      width: 100%;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
-    .cell-title {
+
+    h2.cell-title {
+      color: #232323;
       font-size: 20px;
       font-weight: 500;
       letter-spacing: -0.2px;
       line-height: 24px;
       text-align: center;
+      padding: 30px;
+      height: 80px;
+    }
+
+    h3.cell-action {
+      display: none;
+      a {
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 0.2px;
+        line-height: 32px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.cell__active{
+    height: 100% !important;
+
+    .cell-inner {
+      border-radius: 16px;
+      background: linear-gradient(180deg, #373737 0%, #191919 100%);
+      border-bottom: 15px solid #FFC000;
+      box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.6);
+
+      .cell-title {
+        color: #F5F5F5;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 58px;
+        height: auto;
+      }
+
+      h3.cell-action {
+        display: block;
+        a {
+          color: #F5F5F5;
+        }
+      }
     }
   }
 
   &:hover {
-    background: linear-gradient(180deg, #373737 0%, #191919 100%);
+    .cell-inner {
+      background: linear-gradient(180deg, #373737 0%, #191919 100%);
 
-    .cell-title {
-      color: #F5F5F5;
+      .cell-title {
+        color: #F5F5F5;
+      }
+    }
+  }
+}
+
+.arrows {
+  position: relative;
+  margin-top: -100px;
+
+  .arrow {
+    height: 40px;
+    width: 40px;
+    background-color: #232323;
+    border-radius: 50%;
+    position: absolute;
+    color: #F5F5F5;
+    line-height: 40px;
+    text-align: center;
+
+    &:hover {
+      background: #FFC000;
+      color: #232323;;
+    }
+
+    &.arrow__left {
+      left: 0;
+      right: auto;
+      top: 50%;
+    }
+
+    &.arrow__right {
+      right: 0;
+      left: auto;
+      top: 50%;
     }
   }
 }
@@ -74,7 +137,8 @@ main {
 .picker {
   position: relative;
   overflow: hidden;
-  width: 80vw; //225px;
-  height: 90vh;
+  width: 100%;
+  height: 60vh;
   border-radius: 2px;
+  padding: 40px 0;
 }

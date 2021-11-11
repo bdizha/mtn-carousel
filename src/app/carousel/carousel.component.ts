@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Draggable, TimelineMax, TweenLite, Linear} from "gsap/all";
+import {Draggable, Linear, TimelineMax, TweenLite} from "gsap/all";
 
 @Component({
   selector: 'app-carousel',
@@ -8,6 +8,8 @@ import {Draggable, TimelineMax, TweenLite, Linear} from "gsap/all";
 })
 export class CarouselComponent implements OnInit {
   private x: number | undefined;
+  private isMobile: Boolean | undefined;
+  private scrollItems: number | undefined;
 
   constructor() {
   }
@@ -20,20 +22,38 @@ export class CarouselComponent implements OnInit {
     const cells = document.querySelectorAll(".cell");
     const proxy = document.createElement("div");
 
-    const cellWidth = 450;
+    // @ts-ignore
+    console.log(picker.clientWidth, "clientWidth");
+
+    // @ts-ignore
+    const clientWidth = picker.clientWidth;
+
+    this.isMobile = false
+    if (clientWidth >= 992) {
+      this.scrollItems = 6
+    } else if (clientWidth > 768) {
+      this.scrollItems = 3
+    }
+    else {
+      this.scrollItems = 1
+      this.isMobile = true
+    }
 
     const numCells = cells.length;
     const cellStep = 1 / numCells;
+
+    const cellWidth = clientWidth / this.scrollItems;
+    console.log(cellWidth, "cellWidth");
     const wrapWidth = cellWidth * numCells;
 
-    console.log(cellStep, "cellStep");
-
-    const baseTl = new TimelineMax({paused: true});
+    console.log(cellStep, "body");
 
     TweenLite.set(picker, {
       //perspective: 1100,
-      width: wrapWidth - cellWidth
+      width: clientWidth
     });
+
+    const baseTl = new TimelineMax({paused: true});
 
     for (i = 0; i < cells.length; i++) {
       initCell(cells[i], i);
@@ -75,14 +95,16 @@ export class CarouselComponent implements OnInit {
 
       TweenLite.set(element, {
         width: cellWidth,
-        scale: 0.75,
+        scale: 0.6,
         //rotationX: rotationX,
         x: -cellWidth
       });
 
       const tl = new TimelineMax({repeat: 1})
         .to(element, 1, {x: "+=" + wrapWidth/*, rotationX: -rotationX*/}, 0)
-        .to(element, cellStep, {color: "#009688", scale: 1, repeat: 1, yoyo: true}, 0.5 - cellStep);
+        .to(element, cellStep, {className: "+=cell__active", scale: 1, repeat: 1, yoyo: true}, 0.5 - cellStep);
+
+      console.log(element);
 
       baseTl.add(tl, i * -cellStep);
     }

@@ -1,3 +1,6 @@
+$color-yellow: #FFC000;
+$font-family: 'Work Sans';
+
 /* You can add global styles to this file, and also import other style files */
 .help-support {
   height: 24px;
@@ -8,6 +11,14 @@
   letter-spacing: -0.2px;
   line-height: 23px;
   text-align: center;
+}
+
+.triangle {
+  border-left: 300px solid cyan;
+  border-right: 300px solid red;
+  border-bottom: 300px solid green;
+  border-top: 300px solid blue;
+  display: inline-block;
 }
 
 .navigation-primary {
@@ -27,7 +38,6 @@ body {
   background-size: 118px;
 }
 
-
 h1 {
   height: 80px;
   width: 200px;
@@ -38,6 +48,33 @@ h1 {
   line-height: 40px;
 }
 
+h2 {
+  display: block;
+}
+
+section {
+  &.main {
+    margin-top: 150px;
+    .question {
+      position: relative;
+      h2 {
+        display: block;
+        position: absolute;
+        bottom: -60px;
+        right: auto;
+        left: 0;
+        color: #232323;
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: -0.2px;
+        line-height: 28px;
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
 
 .header {
   height: 104px;
@@ -79,6 +116,11 @@ h1 {
 
       .nav-item {
         padding: 32px 20px 24px;
+        .text-yellow {
+          font-size: 12px;
+          display: inline-block;
+          margin-right: 12px;
+        }
 
         &:first-child {
           padding-left: 124px;
@@ -91,7 +133,7 @@ h1 {
           letter-spacing: -0.2px;
           line-height: 23px;
           text-align: center;
-          display: block;
+          display: inline-block;
           padding: 0;
           margin: 0;
         }
@@ -140,7 +182,7 @@ h1 {
         box-sizing: border-box;
         height: 284px;
         width: 200px;
-        border: 2px solid rgba(150,150,150,0.08);
+        border: 2px solid rgba(150, 150, 150, 0.08);
         border-radius: 8px;
         background: linear-gradient(180deg, #373737 0%, #191919 100%);
       }
@@ -166,16 +208,24 @@ h1 {
   }
 }
 
+.mt-12 {
+  margin-top: 60px;
+}
+
 .grid-1920 {
   height: 1080px;
   width: 1920px;
   opacity: 0.16;
 }
 
-.main{
+.main {
   .arrow {
     height: 40px;
     width: 40px;
     background-color: #232323;
   }
+}
+
+.text-yellow {
+  color: $color-yellow;
 }
