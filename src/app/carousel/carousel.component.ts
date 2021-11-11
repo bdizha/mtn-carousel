@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Draggable, Linear, TimelineMax, TweenLite} from "gsap/all";
 
 @Component({
@@ -7,9 +7,15 @@ import {Draggable, Linear, TimelineMax, TweenLite} from "gsap/all";
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
+  @Input() items: Array<any> = [];
+  @Input() scrollItems: Number = 6;
+
+  private baseTl: any = {};
+  private animation: any = {};
+  private cellWidth: Number = 0;
+  private wrapWidth: Number = 0;
+  private cellStep: Number = 0;
   private x: number | undefined;
-  private isMobile: Boolean | undefined;
-  private scrollItems: number | undefined;
 
   constructor() {
   }
@@ -28,46 +34,42 @@ export class CarouselComponent implements OnInit {
     // @ts-ignore
     const clientWidth = picker.clientWidth;
 
-    this.isMobile = false
-    if (clientWidth >= 992) {
-      this.scrollItems = 6
-    } else if (clientWidth > 768) {
+    if (clientWidth > 768 && clientWidth < 969) {
       this.scrollItems = 3
-    } else {
+    } else if (clientWidth < 768) {
       this.scrollItems = 1
-      this.isMobile = true
     }
 
     const numCells = cells.length;
-    const cellStep = 1 / numCells;
+    this.cellStep = 1 / numCells;
 
-    const cellWidth = clientWidth / this.scrollItems;
-    console.log(cellWidth, "cellWidth");
-    const wrapWidth = cellWidth * numCells;
+    // @ts-ignore
+    this.cellWidth = clientWidth / this.scrollItems;
+    console.log(this.cellWidth, "this.cellWidth");
 
-    console.log(cellStep, "body");
+    this.wrapWidth = Number(this.cellWidth) * numCells;
 
     TweenLite.set(picker, {
       //perspective: 1100,
-      width: wrapWidth - cellWidth
+      width: Number(this.wrapWidth) - Number(this.cellWidth)
     });
 
-    const baseTl = new TimelineMax({paused: true});
+    this.baseTl = new TimelineMax({paused: true});
 
     for (i = 0; i < cells.length; i++) {
-      initCell(cells[i], i);
+      this.initCell(cells[i], i);
     }
 
     let animation = new TimelineMax({repeat: -1, paused: true})
-      .add(baseTl.tweenFromTo(1, 2));
+      .add(this.baseTl.tweenFromTo(1, 2));
+
+    console.log(proxy, 'proxy');
 
     const updateProgress = (event: any) => {
-      animation.progress(event.x / wrapWidth);
+      animation.progress(event.x / Number(this.wrapWidth));
     }
 
-    console.log(proxy);
-
-    const draggable = new Draggable(proxy, {
+    new Draggable(proxy, {
       // allowContextMenu: true,
       type: "x",
       trigger: picker,
@@ -75,7 +77,7 @@ export class CarouselComponent implements OnInit {
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
       snap: {
-        x: snapX
+        x: this.snapX
       },
       onThrowComplete: function () {
         console.log("onThrowComplete");
@@ -84,33 +86,44 @@ export class CarouselComponent implements OnInit {
     });
 
     console.log('after draggable...');
-
-    function snapX(x: number) {
-      return Math.round(x / cellWidth) * cellWidth;
-    }
-
-    function initCell(element: Element, index: number) {
-      console.log('initCell', element);
-
-      TweenLite.set(element, {
-        width: cellWidth,
-        scale: 0.6,
-        //rotationX: rotationX,
-        x: -cellWidth
-      });
-
-      const tl = new TimelineMax({repeat: 1})
-        .to(element, 1, {x: "+=" + wrapWidth/*, rotationX: -rotationX*/}, 0)
-        .to(element, cellStep, {className: "+=cell__active", scale: 1, repeat: 1, yoyo: true}, 0.5 - cellStep);
-
-      console.log(element);
-
-      baseTl.add(tl, i * -cellStep);
-    }
   }
 
-  onPlay(): void {
-    console.log('testing...')
+  snapX(x: number) {
+    return Math.round(x / Number(this.cellWidth)) * Number(this.cellWidth);
+  }
+
+  initCell(element: Element, index: number) {
+    console.log('initCell', element);
+
+    TweenLite.set(element, {
+      width: this.cellWidth,
+      scale: 0.6,
+      //rotationX: rotationX,
+      x: -this.cellWidth
+    });
+
+    const tl = new TimelineMax({repeat: 1})
+      .to(element, 1, {x: "+=" + this.wrapWidth/*, rotationX: -rotationX*/}, 0)
+      .to(element, this.cellStep, {
+        className: "+=cell__active",
+        scale: 1,
+        repeat: 1,
+        yoyo: true
+      }, 0.5 - Number(this.cellStep));
+
+    console.log(element);
+
+    this.baseTl.add(tl, index * -this.cellStep);
+  }
+
+  onNext(): void {
+    console.log('onNext...')
+    // this.baseTl.play();
+  }
+
+  onPrev(): void {
+    console.log('onPrev...')
+    // this.baseTl.play("scene" + last);
   }
 
 }
