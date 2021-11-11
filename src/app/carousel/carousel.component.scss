@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 26px;
+  font-weight: 500;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transform-origin: center bottom;
+  //height: 284px;
+  //width: 200px;
+  border: 2px solid rgba(150, 150, 150, 0.08);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EBEBEB 100%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+
+  .cell-image {
+    height: 79.67px;
+    width: 79.67px;
+    border: 1px solid #979797;
+  }
+
+  .cell-title {
+    color: #232323;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .cell__active {
+    .cell-image {
+      height: 158.33px;
+      width: 158.33px;
+    }
+    .cell-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
+
+  &:hover {
+    background: linear-gradient(180deg, #373737 0%, #191919 100%);
+
+    .cell-title {
+      color: #F5F5F5;
+    }
+  }
+}
+
+.picker {
+  position: relative;
+  overflow: hidden;
+  width: 80vw; //225px;
+  height: 90vh;
+  border-radius: 2px;
+}

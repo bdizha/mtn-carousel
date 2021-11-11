@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import "@fontsource/work-sans"
 
 @Component({
   selector: 'app-root',
