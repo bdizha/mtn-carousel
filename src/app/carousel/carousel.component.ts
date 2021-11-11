@@ -66,6 +66,8 @@ export class CarouselComponent implements OnInit {
     console.log(proxy, 'proxy');
 
     const updateProgress = (event: any) => {
+      console.log(event, 'prssssoxy');
+
       animation.progress(event.x / Number(this.wrapWidth));
     }
 
@@ -117,8 +119,9 @@ export class CarouselComponent implements OnInit {
   }
 
   onNext(): void {
-    console.log('onNext...')
+    console.log(this.baseTl, "this.baseTl")
     // this.baseTl.play();
+    // this.baseTl.pause();
   }
 
   onPrev(): void {
