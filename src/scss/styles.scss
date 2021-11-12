@@ -54,15 +54,13 @@ h2 {
 
 section {
   &.main {
-    margin-top: 150px;
-
     .question {
       position: relative;
 
       h2 {
         display: block;
         position: absolute;
-        bottom: -60px;
+        bottom: -300px;
         right: auto;
         left: 0;
         color: #232323;

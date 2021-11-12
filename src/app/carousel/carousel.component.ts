@@ -7,20 +7,64 @@ import {Draggable, Linear, TimelineMax, TweenLite} from "gsap/all";
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  @Input() items: Array<any> = [];
+  // @Input() items: Array<any> = [];
   @Input() scrollItems: Number = 6;
 
   private baseTl: any = {};
-  private animation: any = {};
+  public items: Array<any> = [];
   private cellWidth: Number = 0;
   private wrapWidth: Number = 0;
   private cellStep: Number = 0;
   private x: number | undefined;
 
   constructor() {
+    this.items = [
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Mobile internet'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Home internet'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Get a Device'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Add a phone line  '
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Upgrade'
+      }
+    ]
   }
 
   ngOnInit(): void {
+    this.items = [
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Mobile internet'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Home internet'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Get a Device'
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Add a phone line  '
+      },
+      {
+        image: 'assets/images/placeholder.svg',
+        title: 'Upgrade'
+      }
+    ]
     let i: number;
     TweenLite.defaultEase = Linear.easeNone;
 
@@ -28,24 +72,13 @@ export class CarouselComponent implements OnInit {
     const cells = document.querySelectorAll(".cell");
     const proxy = document.createElement("div");
 
-    // @ts-ignore
-    console.log(picker.clientWidth, "clientWidth");
-
-    // @ts-ignore
-    const clientWidth = picker.clientWidth;
-
-    if (clientWidth > 768 && clientWidth < 969) {
-      this.scrollItems = 3
-    } else if (clientWidth < 768) {
-      this.scrollItems = 1
-    }
-
     const numCells = cells.length;
     this.cellStep = 1 / numCells;
 
     // @ts-ignore
-    this.cellWidth = clientWidth / this.scrollItems;
-    console.log(this.cellWidth, "this.cellWidth");
+    this.cellWidth = 450;
+
+    console.log("items", this.items)
 
     this.wrapWidth = Number(this.cellWidth) * numCells;
 
@@ -63,11 +96,7 @@ export class CarouselComponent implements OnInit {
     let animation = new TimelineMax({repeat: -1, paused: true})
       .add(this.baseTl.tweenFromTo(1, 2));
 
-    console.log(proxy, 'proxy');
-
     const updateProgress = (event: any) => {
-      console.log(event, 'prssssoxy');
-
       animation.progress(event.x / Number(this.wrapWidth));
     }
 
@@ -82,12 +111,8 @@ export class CarouselComponent implements OnInit {
         x: this.snapX
       },
       onThrowComplete: function () {
-        console.log("onThrowComplete");
-        //TODO: animation that inject selected card title
       }
     });
-
-    console.log('after draggable...');
   }
 
   snapX(x: number) {
@@ -95,8 +120,6 @@ export class CarouselComponent implements OnInit {
   }
 
   initCell(element: Element, index: number) {
-    console.log('initCell', element);
-
     TweenLite.set(element, {
       width: this.cellWidth,
       scale: 0.6,
@@ -126,7 +149,6 @@ export class CarouselComponent implements OnInit {
 
   onPrev(): void {
     console.log('onPrev...')
-    // this.baseTl.play("scene" + last);
   }
 
 }
