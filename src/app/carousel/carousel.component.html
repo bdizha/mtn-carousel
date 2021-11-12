@@ -1,91 +1,25 @@
 <div class="cells">
-  <div id="picker" class="picker">
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="MTN image"/>
-        </div>
-        <h2 class="cell-title">Mobile internet</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="MTN image"/>
-        </div>
-        <h2 class="cell-title">Home internet</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="Get a Device"/>
-        </div>
-        <h2 class="cell-title">Get a Device</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="Add a phone line"/>
-        </div>
-        <h2 class="cell-title">Add a phone line</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="Upgrade"/>
-        </div>
-        <h2 class="cell-title">Upgrade</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="MTN image"/>
-        </div>
-        <h2 class="cell-title">Mobile internet</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-    <div class="cell">
-      <div class="cell-inner">
-        <div class="cell-image">
-          <img src="assets/images/placeholder.svg" alt="MTN image"/>
-        </div>
-        <h2 class="cell-title">Home internet</h2>
-        <h3 class="cell-action">
-          <a href="#">Start here</a>
-        </h3>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-sm-12 col-md-10 col-lg-8">
-        <div class="arrows">
-          <div (click)="onPrev()" class="arrow arrow__left"><i class="fas fa-chevron-left"></i></div>
-          <div (click)="onNext()" class="arrow arrow__right"><i class="fas fa-chevron-right"></i></div>
+  <div class="slider-container">
+    <ngx-slick-carousel class="carousel"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig"
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+      <div ngxSlickItem *ngFor="let item of items" class="slide">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="cell-image">
+              <img src="{{ item.image }}" alt="" width="100%">
+            </div>
+            <h2 class="cell-title">{{item.title}}</h2>
+            <h3 class="cell-action">
+              <a href="#">Start here</a>
+            </h3>
+          </div>
         </div>
       </div>
-    </div>
+    </ngx-slick-carousel>
   </div>
 </div>

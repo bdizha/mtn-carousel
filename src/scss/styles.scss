@@ -56,11 +56,10 @@ section {
   &.main {
     .question {
       position: relative;
+      min-height: 100px;
 
       h2 {
         display: block;
-        position: absolute;
-        bottom: -300px;
         right: auto;
         left: 0;
         color: #232323;
@@ -68,6 +67,8 @@ section {
         font-weight: 300;
         letter-spacing: -0.2px;
         line-height: 28px;
+        position: absolute;
+        bottom: -90px;
 
         span {
           font-weight: 700;
@@ -267,4 +268,54 @@ section {
 
 .text-yellow {
   color: $color-yellow;
+}
+
+.slick-arrow{
+  height: 40px !important;
+  width: 40px !important;
+  background-color: #232323 !important;
+  border-radius: 50%;
+  position: absolute;
+  color: #F5F5F5;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  bottom: 20px;
+  top: auto !important;
+
+  &:hover {
+    background: #FFC000 !important;
+    color: #232323 !important;
+  }
+
+  &:before {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1;
+    color: white;
+    opacity: 0.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  z-index: 100;
+
+  &.slick-prev {
+    left: 30% !important;
+    &:before {
+      content: "\f053" !important;
+    }
+  }
+
+  &.slick-next {
+    right: 30% !important;
+    &:before {
+      content: "\f054" !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+   display: none !important;
+  }
 }

@@ -40,9 +40,16 @@
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/@fontsource/work-sans/index.css",
-              "src/scss/styles.scss"
+              "src/scss/styles.scss",
+              "node_modules/slick-carousel/slick/slick.scss",
+              "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js", "node_modules/gsap/src/uncompressed/TweenMax.js", "src/assets/js/ThrowPropsPlugin.min.js"]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/gsap/src/uncompressed/TweenMax.js",
+              "src/assets/js/ThrowPropsPlugin.min.js"]
           },
           "configurations": {
             "production": {

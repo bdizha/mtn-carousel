@@ -7,148 +7,108 @@ import {Draggable, Linear, TimelineMax, TweenLite} from "gsap/all";
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  // @Input() items: Array<any> = [];
-  @Input() scrollItems: Number = 6;
-
-  private baseTl: any = {};
-  public items: Array<any> = [];
-  private cellWidth: Number = 0;
-  private wrapWidth: Number = 0;
-  private cellStep: Number = 0;
-  private x: number | undefined;
-
-  constructor() {
-    this.items = [
+  slideConfig = {
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    centerMode: true,
+    variableWidth: true,
+    responsive: [
       {
-        image: 'assets/images/placeholder.svg',
-        title: 'Mobile internet'
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplaySpeed: 2000,
+          speed: 100
+        }
       },
       {
-        image: 'assets/images/placeholder.svg',
-        title: 'Home internet'
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplaySpeed: 2000,
+          speed: 100
+        }
       },
       {
-        image: 'assets/images/placeholder.svg',
-        title: 'Get a Device'
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplaySpeed: 2000,
+          speed: 100
+        }
       },
       {
-        image: 'assets/images/placeholder.svg',
-        title: 'Add a phone line  '
-      },
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Upgrade'
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          autoplaySpeed: 2000,
+          speed: 100
+        }
       }
     ]
-  }
-
-  ngOnInit(): void {
-    this.items = [
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Mobile internet'
-      },
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Home internet'
-      },
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Get a Device'
-      },
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Add a phone line  '
-      },
-      {
-        image: 'assets/images/placeholder.svg',
-        title: 'Upgrade'
-      }
-    ]
-    let i: number;
-    TweenLite.defaultEase = Linear.easeNone;
-
-    const picker = document.querySelector(".picker");
-    const cells = document.querySelectorAll(".cell");
-    const proxy = document.createElement("div");
-
-    const numCells = cells.length;
-    this.cellStep = 1 / numCells;
-
-    // @ts-ignore
-    this.cellWidth = 450;
-
-    console.log("items", this.items)
-
-    this.wrapWidth = Number(this.cellWidth) * numCells;
-
-    TweenLite.set(picker, {
-      //perspective: 1100,
-      width: Number(this.wrapWidth) - Number(this.cellWidth)
-    });
-
-    this.baseTl = new TimelineMax({paused: true});
-
-    for (i = 0; i < cells.length; i++) {
-      this.initCell(cells[i], i);
+  };
+  items = [
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Mobile internet'
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Home internet'
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Get a Device'
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Add a phone line  '
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Upgrade'
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Add a phone line  '
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Upgrade'
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Add a phone line  '
+    },
+    {
+      image: 'assets/images/placeholder.svg',
+      title: 'Upgrade'
     }
+  ]
 
-    let animation = new TimelineMax({repeat: -1, paused: true})
-      .add(this.baseTl.tweenFromTo(1, 2));
-
-    const updateProgress = (event: any) => {
-      animation.progress(event.x / Number(this.wrapWidth));
-    }
-
-    new Draggable(proxy, {
-      // allowContextMenu: true,
-      type: "x",
-      trigger: picker,
-      throwProps: false,
-      onDrag: updateProgress,
-      onThrowUpdate: updateProgress,
-      snap: {
-        x: this.snapX
-      },
-      onThrowComplete: function () {
-      }
-    });
+  slickInit(e: any) {
+    console.log('slick initialized');
   }
 
-  snapX(x: number) {
-    return Math.round(x / Number(this.cellWidth)) * Number(this.cellWidth);
+  breakpoint(e: any) {
+    console.log('breakpoint');
   }
 
-  initCell(element: Element, index: number) {
-    TweenLite.set(element, {
-      width: this.cellWidth,
-      scale: 0.6,
-      //rotationX: rotationX,
-      x: -this.cellWidth
-    });
-
-    const tl = new TimelineMax({repeat: 1})
-      .to(element, 1, {x: "+=" + this.wrapWidth/*, rotationX: -rotationX*/}, 0)
-      .to(element, this.cellStep, {
-        className: "+=cell__active",
-        scale: 1,
-        repeat: 1,
-        yoyo: true
-      }, 0.5 - Number(this.cellStep));
-
-    console.log(element);
-
-    this.baseTl.add(tl, index * -this.cellStep);
+  afterChange(e: any) {
+    console.log('afterChange');
   }
 
-  onNext(): void {
-    console.log(this.baseTl, "this.baseTl")
-    // this.baseTl.play();
-    // this.baseTl.pause();
+  beforeChange(e: any) {
+    console.log('beforeChange');
   }
 
-  onPrev(): void {
-    console.log('onPrev...')
-  }
+  constructor() { }
+
+  ngOnInit(): void { }
 
 }
