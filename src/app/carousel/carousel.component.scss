@@ -70,7 +70,7 @@
 
       &:hover {
         .cell-inner {
-          background: linear-gradient(180deg, #373737 0%, #191919 100%);
+          background: linear-gradient(180deg, #373737 0%, #191919 100%) !important;
 
           .cell-title {
             color: #F5F5F5;
@@ -94,21 +94,33 @@
           border-radius: 16px;
           border-bottom: 15px solid #FFC000;
           box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
-          background: linear-gradient(180deg, #373737 0%, #191919 100%) !important;
+          background: linear-gradient(180deg, #373737 0%, #191919 100%);
+
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #EBEBEB 100%);
+            margin: 0 30px;
+          }
 
           h2.cell-title {
             font-size: 40px;
             font-weight: 600;
             line-height: 58px;
             height: auto;
-            color: #F5F5F5;
           }
 
           h3.cell-action {
             display: block;
+          }
 
-            a {
+          @media screen and (min-width: 768px) {
+            h2.cell-title {
               color: #F5F5F5;
+            }
+            h3.cell-action {
+              a {
+                color: #F5F5F5;
+              }
             }
           }
         }
