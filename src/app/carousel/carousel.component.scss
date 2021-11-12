@@ -3,7 +3,18 @@
 }
 
 .slick-slider {
+  width: 100%;
+  margin: auto;
+  background: transparent;
   padding: 0;
+
+  .slick-slide {
+    padding-bottom: 45px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 90px;
+  }
 
   .slick-slide {
     .cell {
@@ -15,10 +26,10 @@
       align-items: center;
       justify-content: center;
       background: transparent;
-      padding-bottom: 8px;
       margin-top: 120px;
       height: 100%;
       transform-origin: center bottom;
+      padding: 0 24px;
 
       .cell-inner {
         transform-origin: center bottom;
@@ -90,7 +101,7 @@
         margin-top: 0;
 
         .cell-inner {
-          width: 456px !important;
+          width: 456px;
           border-radius: 16px;
           border-bottom: 15px solid #FFC000;
           box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
@@ -99,7 +110,6 @@
           @media screen and (max-width: 768px) {
             width: 100%;
             background: linear-gradient(180deg, #FFFFFF 0%, #EBEBEB 100%);
-            margin: 0 30px;
           }
 
           h2.cell-title {
@@ -139,22 +149,6 @@
   }
 }
 
-.slick-slider {
-  width: 100%;
-  margin: auto;
-  background: transparent;
-  @media screen and (max-width: 768px) {
-    margin-top: 90px;
-  }
-}
-
-
-.slick-slide {
-  margin: 0 27px;
-  padding-bottom: 45px;
-}
-
-/* the parent */
 .slick-list {
   margin: 0 -27px;
 }

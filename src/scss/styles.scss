@@ -1,41 +1,21 @@
 $color-yellow: #FFC000;
 $font-family: 'Work Sans';
 
-/* You can add global styles to this file, and also import other style files */
-.help-support {
-  height: 24px;
-  width: 120px;
-  color: #232323;
-  font-family: "Work Sans";
-  font-size: 16px;
-  letter-spacing: -0.2px;
-  line-height: 23px;
-  text-align: center;
+html {
+  background: #FFFFFF;
 }
 
-.triangle {
-  border-left: 300px solid cyan;
-  border-right: 300px solid red;
-  border-bottom: 300px solid green;
-  border-top: 300px solid blue;
-  display: inline-block;
+body {
+  font-family: $font-family;
+  background-color: #dff3f5;
+  background-image: linear-gradient(to right, #f0feff 88px, transparent 1px);
+  background-size: 118px;
 }
 
 .navigation-primary {
   height: 96px;
   align-items: start;
   padding: 0;
-}
-
-html {
-  background: #FFFFFF;
-}
-
-body {
-  font-family: "Work Sans";
-  background-color: #dff3f5;
-  background-image: linear-gradient(to right, #f0feff 88px, transparent 1px);
-  background-size: 118px;
 }
 
 h1 {
@@ -54,6 +34,14 @@ h2 {
 
 section {
   &.main {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+    .arrow {
+      height: 40px;
+      width: 40px;
+      background-color: #232323;
+    }
     .question {
       position: relative;
       min-height: 100px;
@@ -94,7 +82,7 @@ section {
         padding: 0;
       }
 
-      .mtn-logo {
+      .logo {
         height: 96px;
         width: 96px;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.08);
@@ -102,6 +90,10 @@ section {
         left: 0;
         display: block;
         z-index: 10;
+
+        @media screen and (max-width: 768px) {
+          left: 24px;
+        }
 
         img {
           display: block;
@@ -114,7 +106,6 @@ section {
         height: 24px;
         width: 48px;
         color: #232323;
-        font-family: "Work Sans";
         font-size: 16px;
         letter-spacing: -0.2px;
         line-height: 23px;
@@ -159,17 +150,6 @@ section {
           background: url("~src/assets/images/ic_SEARCH.svg") no-repeat;
         }
       }
-    }
-
-    .what-are-you-here-to {
-      height: 80px;
-      width: 200px;
-      color: #232323;
-      font-family: "Work Sans";
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-      line-height: 40px;
     }
 
     .card {
@@ -224,9 +204,11 @@ section {
 
 .navbar {
   .navbar-toggler {
-    margin: 20px 15px;
+    margin: 24px;
     position: absolute;
     right: 0;
+    border: none;
+    padding: 0;
   }
 
   @media screen and (max-width: 768px) {
@@ -247,23 +229,6 @@ section {
 
 .mt-12 {
   margin-top: 60px;
-}
-
-.grid-1920 {
-  height: 1080px;
-  width: 1920px;
-  opacity: 0.16;
-}
-
-.main {
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-  .arrow {
-    height: 40px;
-    width: 40px;
-    background-color: #232323;
-  }
 }
 
 .text-yellow {
@@ -316,6 +281,6 @@ section {
   }
 
   @media screen and (max-width: 768px) {
-   display: none !important;
+    display: none !important;
   }
 }
