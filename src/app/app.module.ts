@@ -6,22 +6,18 @@ import { AppComponent } from './app.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { CardComponent } from './card/card.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MtnCardCarouselModule } from 'mtn-card-carousel';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    CarouselComponent,
-    CardComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    SlickCarouselModule
+    MtnCardCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
